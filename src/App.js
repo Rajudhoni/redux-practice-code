@@ -1,23 +1,33 @@
-import logo from './logo.svg';
+import React  from 'react';
 import './App.css';
+import {useSelector, useDispatch, } from 'react-redux';
+import { Bikes, Cars} from './redux/actions';
+import Todoapp from './Todoapp';
+import AsyncPlanets from './AsyncPlanets';
+
+
 
 function App() {
+  const counter = useSelector(state => state.reducer);
+  console.log("counter state", counter);
+  const dispatch = useDispatch();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          onClick={()=> dispatch(Cars())}
+        >Car</button>&nbsp;&nbsp;&nbsp;
+        <h1>{counter.vehicle}</h1>
+        <button
+          onClick={()=> dispatch(Bikes())}
         >
-          Learn React
-        </a>
-      </header>
+          
+            Bike
+        </button>
+        <hr></hr>
+        <Todoapp/>
+        <hr></hr>
+        <AsyncPlanets/>
     </div>
   );
 }
